@@ -31,8 +31,8 @@ bool blow=false;
 bool first=true;
 int identical=0;
 int wrong=0;
-static const int hight=(7+2);
-static const int length=(7+2);
+static const int hight=(30+2);
+static const int length=(30+2);
 char board[hight][length]/*{
     {'0', '0', '0', '0', '0', '0', '0', '0', '0'},
     {'0', 'X', 'X', 'X', '4', 'X', 'X', 'X', '0'},
@@ -109,56 +109,74 @@ int main(){
 
     //first gess
     int line=0/*sor*/, column=0/*oszlop*/, action=0, last=0;/*[oszlop][sor]*/
-    char ch, chs;
+    char ch, chs, letter=64;
 
 do{
 
-    for(int aa=1;aa<(hight-1);aa++){
+    for(int aa=0;aa<(hight-1);aa++){
         //cout << "test";
-        for(int ab=1;ab<(length-1);ab++){
-            //cout << "tset";
-            if(wisible[aa][ab]==true && flag[aa][ab]!='P'){
-
-                switch(board[aa][ab]){
-                    case '1' :
-                        SetColor(c.blue);
-                        break;
-                    case '2' :
-                        SetColor(c.green);
-                        break;
-                    case '3' :
-                        SetColor(c.light_red);
-                        break;
-                    case '4' :
-                        SetColor(c.light_yellow);
-                        break;
-                    case '5' :
-                        SetColor(c.purple);
-                        break;
-                    case '6' :
-                        SetColor(c.turquoise);
-                        break;
-                    case '7' :
-                        SetColor(c.yellow);
-                        break;
-                    case '8' :
-                        SetColor(c.grey);
-                        break;
+        for(int ab=0;ab<(length-1);ab++){
+            //cout << "aa" << aa;
+            if(aa == 0 && ab == 0){
+                if((hight-2)>9){
+                    cout << " ";
                 }
-
-                cout << board[aa][ab] << " ";
-                ResetColor();
+                cout << "  ";
             }
-            else if(flag[aa][ab]=='P'){
-                SetColor(c.red);
-                cout << "P ";
-                ResetColor();
+            else if(aa==0){
+                letter = 64+ab;
+                cout << letter << " ";
+            }
+            else if(ab==0){
+                if((hight-2)>9 && aa<10){
+                    cout << " ";
+                }
+                cout << aa << " ";
             }
             else{
-                cout << "- ";
+                if(wisible[aa][ab]==true && flag[aa][ab]!='P' && aa!=0){
+
+                    switch(board[aa][ab]){
+                        case '1' :
+                            SetColor(c.blue);
+                            break;
+                        case '2' :
+                            SetColor(c.green);
+                            break;
+                        case '3' :
+                            SetColor(c.light_red);
+                            break;
+                        case '4' :
+                            SetColor(c.light_yellow);
+                            break;
+                        case '5' :
+                            SetColor(c.purple);
+                            break;
+                        case '6' :
+                            SetColor(c.turquoise);
+                            break;
+                        case '7' :
+                            SetColor(c.yellow);
+                            break;
+                        case '8' :
+                            SetColor(c.grey);
+                            break;
+                    }
+
+                    cout << board[aa][ab] << " ";
+                    ResetColor();
+                }
+                else if(flag[aa][ab]=='P'){
+                    SetColor(c.red);
+                    cout << "P ";
+                    ResetColor();
+                }
+                else{
+                    cout << "- ";
+                }
             }
         }
-        cout <<"\n";
+                cout <<"\n";
     }
 
         first=true;
@@ -174,7 +192,7 @@ do{
             cin >>  ch;
         }while(!((ch>=65 && ch<=(length-3+65)) || (ch>=97 && ch<=(length-3+97))));
         first=true;
-        if(ch>90){
+        if(ch>94){
             line=ch-96;
         }
         else{
@@ -316,6 +334,7 @@ if(action==1){
 else if(action==2){
     identical=0;
     wrong=0;
+    cout << "line" << line <<"\n";
     flag[column][line]='P';
     for(int ac=1;ac<(hight-1);ac++){
         for(int ad=1;ad<(length-1);ad++){
