@@ -116,6 +116,13 @@ do{
             cin >>  ch;
         }while(!((ch>=65 && ch<=(length-3+65)) || (ch>=97 && ch<=(length-3+97))));
         first=true;
+        if(ch>90){
+            line=ch-96;
+        }
+        else{
+            line=ch-64;
+        }
+        //cout << "line" << line;
         do{
             if(first==false){
                 cout << "Something went wrong....\nTry again.\n";
@@ -124,11 +131,19 @@ do{
             }
             cout << "line(sor): ";
             first=false;
-        }while((!(cin >> column)) || column > (length-2));
+        }while((!(cin >> column)) || ((column > (length-2)) || (column<=0)));
         first=true;
 
-        cout << "action(1-> mine; 2-> flag; 3-> remove flag): ";
-        cin >> action;
+        do{
+            if(first==false){
+                cout << "Something went wrong....\nTry again.\n";
+                cin.clear();
+                cin.ignore(10000, '\n');
+            }
+            cout << "action(1-> mine; 2-> flag; 3-> remove flag): ";
+            cin >> action;
+            first=false;
+        }while(!(action<4 && action>0));
         cout << "\n";
 
 if(action==1){
