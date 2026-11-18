@@ -3,6 +3,21 @@
 #include <cstdlib>
 using namespace std;
 
+class colors{
+    public:
+            int red = 31;
+            int green = 32;
+            int yellow = 33;
+            int blue = 34;
+            int purple = 35;
+            int grey = 90;
+            int turquoise = 96;
+            int light_green = 92;
+            int light_red = 91;
+            int light_yellow = 93;
+
+};
+
 void SetColor(int textColor){
     cout << "\033[" << textColor << "m";
 }
@@ -16,13 +31,25 @@ bool blow=false;
 bool first=true;
 int identical=0;
 int wrong=0;
-static const int hight=(10+2);
-static const int length=(10+2);
-char board[hight][length];
+static const int hight=(7+2);
+static const int length=(7+2);
+char board[hight][length]/*{
+    {'0', '0', '0', '0', '0', '0', '0', '0', '0'},
+    {'0', 'X', 'X', 'X', '4', 'X', 'X', 'X', '0'},
+    {'0', 'X', '8', 'X', '6', 'X', '7', 'X', '0'},
+    {'0', 'X', 'X', 'X', '4', '0', 'X', 'X', '0'},
+    {'0', '2', '4', '4', '3', '2', '3', '2', '0'},
+    {'0', '1', '3', 'X', '2', '0', '0', 'X', '0'},
+    {'0', 'X', '6', 'X', '3', '0', '5', 'X', '0'},
+    {'0', 'X', 'X', 'X', '2', 'X', 'X', 'X', '0'},
+    {'0', '0', '0', '0', '0', '0', '0', '0', '0'}
+
+}*/;
 bool wisible[hight][length];
 char flag[hight][length];
 
 int main(){
+    colors c;
     setlocale(LC_ALL,"");
     srand(time(0));
 
@@ -60,6 +87,8 @@ int main(){
         }
     }while(a<number);
 
+
+
     //counting the mines
     int b=48;
     for(int k=1;k<(hight-1);k++){
@@ -89,10 +118,39 @@ do{
         for(int ab=1;ab<(length-1);ab++){
             //cout << "tset";
             if(wisible[aa][ab]==true && flag[aa][ab]!='P'){
+
+                switch(board[aa][ab]){
+                    case '1' :
+                        SetColor(c.blue);
+                        break;
+                    case '2' :
+                        SetColor(c.green);
+                        break;
+                    case '3' :
+                        SetColor(c.light_red);
+                        break;
+                    case '4' :
+                        SetColor(c.light_yellow);
+                        break;
+                    case '5' :
+                        SetColor(c.purple);
+                        break;
+                    case '6' :
+                        SetColor(c.turquoise);
+                        break;
+                    case '7' :
+                        SetColor(c.yellow);
+                        break;
+                    case '8' :
+                        SetColor(c.grey);
+                        break;
+                }
+
                 cout << board[aa][ab] << " ";
+                ResetColor();
             }
             else if(flag[aa][ab]=='P'){
-                SetColor(31);
+                SetColor(c.red);
                 cout << "P ";
                 ResetColor();
             }
@@ -212,12 +270,41 @@ if(action==1){
             for(int ag=1;ag<(hight-1);ag++){
                 for(int ah=1;ah<(length-1);ah++){
                     if(board[ag][ah]=='X'){
-                        SetColor(31);
+                        SetColor(c.red
+
+                        );
                         cout << board[ag][ah] << " ";
                         ResetColor();
                     }
                     else{
+                        switch(board[ag][ah]){
+                            case '1' :
+                                SetColor(c.blue);
+                                break;
+                            case '2' :
+                                SetColor(c.green);
+                                break;
+                            case '3' :
+                                SetColor(c.light_red);
+                                break;
+                            case '4' :
+                                SetColor(c.light_yellow);
+                                break;
+                            case '5' :
+                                SetColor(c.purple);
+                                break;
+                            case '6' :
+                                SetColor(c.turquoise);
+                                break;
+                            case '7' :
+                                SetColor(c.yellow);
+                                break;
+                            case '8' :
+                                SetColor(c.grey);
+                                break;
+                        }
                         cout << board[ag][ah] << " ";
+                        ResetColor();
                     }
             }
             cout << "\n";
@@ -245,12 +332,40 @@ else if(action==2){
         for(int ae=1;ae<(hight-1);ae++){
             for(int af=1;af<(length-1);af++){
                 if(board[ae][af]=='X'){
-                        SetColor(31);
+                        SetColor(c.red
+                        );
                         cout << board[ae][af] << " ";
                         ResetColor();
                     }
                     else{
+                        switch(board[ae][af]){
+                            case '1' :
+                                SetColor(c.blue);
+                                break;
+                            case '2' :
+                                SetColor(c.green);
+                                break;
+                            case '3' :
+                                SetColor(c.light_red);
+                                break;
+                            case '4' :
+                                SetColor(c.light_yellow);
+                                break;
+                            case '5' :
+                                SetColor(c.purple);
+                                break;
+                            case '6' :
+                                SetColor(c.turquoise);
+                                break;
+                            case '7' :
+                                SetColor(c.yellow);
+                                break;
+                            case '8' :
+                                SetColor(c.grey);
+                                break;
+                        }
                         cout << board[ae][af] << " ";
+                        ResetColor();
                     }
             }
             cout << "\n";
@@ -277,7 +392,7 @@ else if(action==3){
         for(int ae=1;ae<(hight-1);ae++){
             for(int af=1;af<(length-1);af++){
                 if(board[ae][af]=='X'){
-                        SetColor(31);
+                        SetColor(c.red);
                         cout << board[ae][af] << " ";
                         ResetColor();
                     }
